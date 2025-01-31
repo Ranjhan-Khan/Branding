@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Onora</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="css/workbase.css">
+    <link rel="stylesheet" href="css/worksekeleton.css">
+    <link rel="stylesheet" href="css/work.css">
+    <!--[if lte IE 8]>
+    <script src="js/html5.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114x114.png">
+    <style>
+        /* Styling for the left and right arrows */
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #000;
+            cursor: pointer;
+            z-index: 1000;
+            padding: 10px;
+        }
+        .slider-arrow.left {
+            left: 20px;
+        }
+        .slider-arrow.right {
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="work">
+    <a class="close" href="index.html#works">CLOSE</a>
+
+    <!-- Add the left and right arrows for the top image slider -->
+    <span class="slider-arrow left" id="imageSliderLeft">&#10094;</span>
+    <span class="slider-arrow right" id="imageSliderRight">&#10095;</span>
+
+    <div class="container">
+        <div class="sixteen columns">
+            <div id="imageSlider" class="cbp-fwslider">
+                <ul>
+                    <li><img src="images/works/1.png" alt="img02"/></li>
+                    <li><img src="images/works/2.png" alt="img03"/></li>
+                    <li><img src="images/works/3.png" alt="img04"/></li>
+                    <li><img src="images/works/4.png" alt="img01"/></li>
+                    <li><img src="images/works/5.png" alt="img05"/></li>
+                    <li><img src="images/works/6.png" alt="img06"/></li>
+                </ul>
+            </div>
+        </div>
+        <div class="eight columns">
+            <h3>Project Title</h3>
+            <p class="border-padding">If you don't want to be beaten, imprisoned, mutilated, killed or tortured then you shouldn't condone such behaviour towards anyone, be they human or not. Nothing will benefit human health and increase the chances for survival of life on Earth as much as the evolution to a vegetarian diet. People eat meat and think they will become as strong as an ox, forgetting that the ox eats grass.</p>
+            <a class="inner-button-works" href="#">View Online</a>
+        </div>
+        <div class="eight columns">
+            <div id="reviewSlider" class="cbp-qtrotator">
+                <div class="cbp-qtcontent">
+                    <img src="images/works/review/4.jpg" alt="img01" />
+                    <blockquote>
+                        <p><em>People eat meat and think they will become as strong as an ox, forgetting that the ox eats grass.</em></p>
+                        <footer>Pino Caruso</footer>
+                    </blockquote>
+                </div>
+                <div class="cbp-qtcontent">
+                    <img src="images/works/review/1.jpg" alt="img02" />
+                    <blockquote>
+                        <p><em>Nothing will benefit human health and increase the chances for survival of life on Earth as much as the evolution to a vegetarian diet.</em></p>
+                        <footer>Albert Einstein</footer>
+                    </blockquote>
+                </div>
+                <div class="cbp-qtcontent">
+                    <img src="images/works/review/2.jpg" alt="img03" />
+                    <blockquote>
+                        <p><em>If you don't want to be beaten, imprisoned, mutilated, killed or tortured then you shouldn't condone such behaviour towards anyone, be they human or not.</em></p>
+                        <footer>Moby</footer>
+                    </blockquote>
+                </div>
+                <div class="cbp-qtcontent">
+                    <img src="images/works/review/3.jpg" alt="img04" />
+                    <blockquote>
+                        <p><em>My body will not be a tomb for other creatures.</em></p>
+                        <footer>Leonardo Da Vinci</footer>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Image Slider
+        var currentImageIndex = 0;
+        var $imageSlides = $('#imageSlider ul li');
+        var totalImages = $imageSlides.length;
+
+        // Show the first image initially
+        $imageSlides.hide().eq(currentImageIndex).show();
+
+        function showImage(index) {
+            $imageSlides.hide().eq(index).fadeIn();
+        }
+
+        // Left arrow click event for image slider
+        $('#imageSliderLeft').click(function(e) {
+            e.preventDefault();
+            currentImageIndex = (currentImageIndex - 1 + totalImages) % totalImages;
+            showImage(currentImageIndex);
+        });
+
+        // Right arrow click event for image slider
+        $('#imageSliderRight').click(function(e) {
+            e.preventDefault();
+            currentImageIndex = (currentImageIndex + 1) % totalImages;
+            showImage(currentImageIndex);
+        });
+
+        // Review Slider
+        var currentReviewIndex = 0;
+        var $reviewSlides = $('#reviewSlider .cbp-qtcontent');
+        var totalReviews = $reviewSlides.length;
+
+        // Show the first review initially
+        $reviewSlides.hide().eq(currentReviewIndex).show();
+
+        function showReview(index) {
+            $reviewSlides.hide().eq(index).fadeIn();
+        }
+
+        function autoplayReview() {
+            setInterval(function() {
+                showReview(currentReviewIndex);
+                currentReviewIndex = (currentReviewIndex + 1) % totalReviews;
+            }, 5000); // Change slide every 5 seconds
+        }
+
+        autoplayReview(); // Start autoplay
+    });
+</script>
+
+</body>
+</html>
